@@ -7,18 +7,31 @@ function App() {
   
   const [screen, setScreen] = useState('0')
   const handleButtonClick = (e) => {
-    const value = e.target.value;
+    const {value} = e.target;
+    if (value === '.') {
+      //if (screen.indexOf(value) !== -1) return; (una forma de no repetir e punto)
+      if (screen.includes('.')) return; //(otra forma de no repetir el punto)
+    }
   if (value === 'C') {
     setScreen('0');
     return
     }
-    if (screen === '0'){
+    if (screen === '0' && value !== '.'){
       setScreen(value)
     }
     else {
     setScreen(`${screen}${value}`)
     }
   }
+
+const handleDelButtonClick = () => {
+  if (screen.length ===1) {
+    setScreen('0');
+    return;
+  } else {
+  setScreen(screen.slice(0, -1))
+  }
+}
 
   return (
   <div className='app'>
@@ -162,6 +175,7 @@ function App() {
         <button
           type='button'
           className={buttonsClasses}
+          onClick={handleDelButtonClick}
           >DEL</button> 
          <td>
         <button
@@ -175,6 +189,8 @@ function App() {
         <button
           type='button'
           className={buttonsClasses}
+          value="."
+          onClick={(e) => handleButtonClick (e)}
           >.</button> 
         </td>
       </tr>
