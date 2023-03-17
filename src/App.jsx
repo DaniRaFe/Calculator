@@ -5,6 +5,7 @@ const buttonsClasses = "btn btn-primary w-75";
 
 function App() {
   
+  const [operator, SetOperator] = useState('');
   const [number1, setNumber1] = useState('');
   const [clearScreen, setCleanScreen] = useState(false);
   const [screen, setScreen] = useState('0');
@@ -23,7 +24,7 @@ function App() {
 //!--------------------------------------
 console.log({number1});    
 if(clearScreen) {
-  console.log('cambia screen');
+  //console.log('cambia screen');
       setScreen (value);
       setCleanScreen(false);
       return;
@@ -46,18 +47,24 @@ const handleDelButtonClick = () => {
 }
 
 const handleOperationButtonClick = (e) => {
-  const operator = e.target.value;
-  switch(operator) {
-    case '+':
+  SetOperator(e.target.value);
       setNumber1(screen);
-      console.log('suma');
+      setCleanScreen(true);
+}
+
+const handleEqualButtonClick = () => {
+  const a = +number1;
+  const b = +screen;
+  switch (operator) {
+    case '+':
+      setScreen ((a+b).toString());
       break;
       default:
         break;
-  }
-  setCleanScreen(true);
-}
 
+  }
+  
+}
 
   return (
   <div className='app'>
@@ -195,6 +202,7 @@ const handleOperationButtonClick = (e) => {
           type='button'
           className={buttonsClasses}
           style={{height: "80px"}}
+          onClick={handleEqualButtonClick}
           >=</button> 
         </td>
       </tr>
