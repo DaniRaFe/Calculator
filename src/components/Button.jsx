@@ -1,12 +1,17 @@
-const Button = (props) => {
+const Button = ({
+    classes,
+    value,
+    handleClick,
+    style 
+}) => {
     return (
         <button
-        type='button'
-        className={props.style}
-        value="8"
-        onClick={(e) => props.handleClick (e)}
-        style={{}}
-        >8</button> 
+        type="button"
+        className={classes}
+        value={value}
+        onClick={(e) => handleClick(e)}
+        style={style}
+        >{value}</button> 
     )
 }
 
