@@ -1,5 +1,6 @@
 import {useState} from 'react'
 import './App.css'
+import Button from './components/Button';
 
 const buttonsClasses = "btn btn-primary w-75";
 
@@ -59,6 +60,15 @@ const handleEqualButtonClick = () => {
     case '+':
       setScreen ((a+b).toString());
       break;
+     case '-':
+      setScreen ((a-b).toString());
+      break;
+    case '/':
+      setScreen ((a/b).toString());
+      break;
+    case '*':
+      setScreen ((a*b).toString());
+      break;
       default:
         break;
 
@@ -87,24 +97,31 @@ const handleEqualButtonClick = () => {
           className={buttonsClasses}
           value="C"
           onClick={(e) => handleButtonClick (e)}
+          style={{}}
           >C</button> 
         </td>
         <td> 
           <button
           type='button'
           className={buttonsClasses}
+          value="/"
+          onClick={(e) => handleOperationButtonClick (e)}
           >/</button> 
         </td>
         <td> 
           <button
           type='button'
           className={buttonsClasses}
+          value="*"
+          onClick={(e) => handleOperationButtonClick (e)}
           >*</button> 
         </td>
         <td> 
           <button
           type='button'
           className={buttonsClasses}
+          value="-"
+          onClick={(e) => handleOperationButtonClick (e)}
           >-</button> 
         </td>
       </tr>
@@ -118,13 +135,18 @@ const handleEqualButtonClick = () => {
           onClick={(e) => handleButtonClick (e)}
           >7</button> 
         </td>
-        <td> 
-          <button
+        <td rowSpan={1}> 
+          {/*<button
           type='button'
           className={buttonsClasses}
           value="8"
           onClick={(e) => handleButtonClick (e)}
-          >8</button> 
+          style={{}}
+        >8</button> */}
+        <Button 
+    style={buttonsClasses} 
+    handleClick={handleButtonClick} 
+    />
         </td>
         <td> 
           <button
@@ -231,6 +253,7 @@ const handleEqualButtonClick = () => {
         </td>
       </tr>
     </table>
+   
   </div>
   )
 }
